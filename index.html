@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>UV size compare</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #fff;
+				margin: 0px;
+				overflow: hidden;
+			}
+			.controls {
+				color: #fff;
+				top: 10px;
+				text-align: center;
+				z-index: 100;
+				display:table-cell;
+			}
+
+			.controlContainer {
+				display: inline-table;
+				width: 100%;
+				top: 10px;
+				position:absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="controls" class="controlContainer">
+		</div>
+
+		<script src="js/three.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="js/main.js"></script>
+
+	</body>
+</html>
