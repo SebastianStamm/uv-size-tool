@@ -30,7 +30,7 @@ UV coordinates are usually normalized to have a value between 0 and 1. Before pr
 
 ## License
 
-[GPL v2][3]
+[MIT][3]
 
 
 [1]: docs/screenshot.png
