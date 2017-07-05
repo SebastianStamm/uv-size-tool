@@ -47,7 +47,7 @@ function addControls(obj) {
   control.appendChild(document.createTextNode('cm'));
 
   function updateObj(mesh, s) {
-    mesh.scale.set(s,s,s);
+    mesh.parent.scale.set(s,s,s);
     width.textContent = Math.round(originalWidth * s);
     height.textContent = Math.round(originalHeight * s);
     depth.textContent = Math.round(originalDepth * s);
@@ -66,7 +66,7 @@ function addControls(obj) {
   });
 
   document.getElementById('controls').appendChild(control);
-} 
+}
 
 var positionOffset = 0;
 
@@ -89,13 +89,13 @@ function handleFileSelect(e) {
     var object = result.container;
 
     model = object;
-    
+
     object.traverse( function ( child ) {
 
       if ( child instanceof THREE.Mesh ) {
         child.geometry.computeFaceNormals();
         child.geometry.computeVertexNormals();
-        
+
         //new THREE.BoxHelper( child );
 
 
@@ -108,20 +108,21 @@ function handleFileSelect(e) {
         child.position.set( 0, 0, 0 );
         child.rotation.set( 0, 0, 0 );
         child.scale.set( 1, 1, 1 );
-        
+
         child.updateMatrix();
-        
+
         new THREE.BoxHelper( child );
-        
+
+        child.geometry.computeBoundingBox();
         var bb = child.geometry.boundingBox;
         child.geometry.applyMatrix( new THREE.Matrix4().makeTranslation(
           - bb.min.x - (bb.max.x - bb.min.x) / 2 + positionOffset,
           - bb.min.y - (bb.max.y - bb.min.y) / 2,
-          - bb.min.z - (bb.max.z - bb.min.z) / 2 
+          - bb.min.z - (bb.max.z - bb.min.z) / 2
         ) );
 
         child.updateMatrix();
-        
+
         scene.add( object );
 
         var bbox = new THREE.BoxHelper( child );
